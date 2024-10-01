@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaimito's Unhealthy Obsessions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f7fa;
+            color: #333;
+            text-align: center;
+            padding: 50px;
+        }
+        h1 {
+            color: #32CD32;
+        }
+        .comparison {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        .card {
+            background-color: #fff;
+            border: 2px solid #32CD32;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px;
+            width: 300px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            color: #32CD32;
+        }
+        a {
+            color: #0288d1;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Jaimito's Unhealthy Obsessions</h1>
+
+    <div class="comparison">
+        <div class="card">
+            <h2>Unhealthy Obsession</h2>
+            <ul>
+                <li>I'm extremely Obsessed with Green</li>
+                <li>I'm obsessed with Wordle, and everyday even on the weekends, I would complete my wordle of the day.</li>
+                <li>I'm really obsessed with the fast food location called Canes. I love their sauce.</li>
+                <li>Another unhealthy obsession is going to the Gym everyday. It's really healthy to stay in shape, however I go 6 times a week. I clearly have an unhealthy obsession.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h2>Healthy Attachment</h2>
+            <ul>
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>Jaimito's Unhealthy Obsession</title>
+                </head>
+                <body>
+
+                  <img src="Canes.png" alt="Canes Logo" width="200" height="100"> 
+
+                <img src="gym.jpeg" alt="Gym Image" width="200" height="100"> 
+
+                </body>
+                </html>
+            </ul>
+        </div>
+    </div>
+
+    <p><a href="#resources"></a></p>
+
+    <div id="resources" style="margin-top: 40px;">
+        
+        </ul>
+    </div>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wordle Game</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        .game {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .row {
+            display: flex;
+            margin: 5px;
+        }
+        .cell {
+            width: 40px;
+            height: 40px;
+            border: 2px solid #ccc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+        }
+        .correct {
+            background-color: green;
+            color: white;
+        }
+        .present {
+            background-color: yellow;
+            color: black;
+        }
+        .absent {
+            background-color: gray;
+            color: white;
+        }
+        input {
+            width: 200px;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game">
+        <h1>Wordle</h1>
+        <div id="grid"></div>
+        <input type="text" id="guessInput" maxlength="5" placeholder="Enter your guess" />
+        <button id="submitGuess">Submit Guess</button>
+        <div id="message"></div>
+    </div>
+
+    <script>
+        const targetWord = "ready";
+        const maxAttempts = 6;
+        let currentAttempt = 0;
+
+        function createGrid() {
+            const grid = document.getElementById("grid");
+            for (let i = 0; i < maxAttempts; i++) {
+                const row = document.createElement("div");
+                row.className = "row";
+                for (let j = 0; j < 5; j++) {
+                    const cell = document.createElement("div");
+                    cell.className = "cell";
+                    row.appendChild(cell);
+                }
+                grid.appendChild(row);
+            }
+        }
+
+        function displayGuess(guess) {
+            const cells = document.querySelectorAll(".row:nth-child(" + (currentAttempt + 1) + ") .cell");
+            for (let i = 0; i < 5; i++) {
+                cells[i].textContent = guess[i];
+                if (guess[i] === targetWord[i]) {
+                    cells[i].classList.add("correct");
+                } else if (targetWord.includes(guess[i])) {
+                    cells[i].classList.add("present");
+                } else {
+                    cells[i].classList.add("absent");
+                }
+            }
+        }
+
+        document.getElementById("submitGuess").addEventListener("click", function () {
+            const guessInput = document.getElementById("guessInput");
+            const guess = guessInput.value.toLowerCase();
+            guessInput.value = "";
+
+            if (guess.length !== 5) {
+                alert("Please enter a 5-letter word.");
+                return;
+            }
+
+            displayGuess(guess);
+            currentAttempt++;
+
+            if (guess === targetWord) {
+                document.getElementById("message").textContent = "Congratulations! You found the word!";
+            } else if (currentAttempt >= maxAttempts) {
+                document.getElementById("message").textContent = "Game Over! The word was: " + targetWord;
+            }
+        });
+
+        createGrid();
+    </script>
+</body>
+</html>
+ 
